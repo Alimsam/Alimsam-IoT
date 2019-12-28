@@ -5,33 +5,50 @@ import time
 headers = {}
 data = {}
 resCode = ""
+ip = "192.168.219.107"
+socketPort = 3300
+serverPort = 3000
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-#sock.connect(("54.180.88.152", 3000))
-sock.connect(("10.120.73.120", 3300))
+print('wating for connecting to server')
+sock.connect((ip, socketPort))
 print('connected to Server')
 
 while 1:
-    print('waiting for ')
+    print('waiting for request from socket server')
     data_size = 512
     data = sock.recv(data_size)
-    Situation = str(data)
+    Situation = str(data).split(',')[0]
     
-    if Situation == "moving" or Situation == "outing":
+    if Situation == "moving":
+        place = str(data).split(',')[1]
         finger = myFinger()
         isFinger = finger.searchFinger()
         if isFinger[0] == "true":
-            data = {"fingerSuccess":isFinger[0], "fingerData":isFinger[1], "fingerId":isFinger[2]}
+            data = {"fingerSuccess":isFinger[0], "fingerId":isFinger[1], "place": place}
         elif isFinger[0] == "false":
             data = {"fingerSuccess":"false"}
-    
+            
+    elif Situation == "outing":
+        finger = myFinger()
+        isFinger = finger.searchFinger()
+        if isFinger[0] == "true":
+            data = {"fingerSuccess":isFinger[0], "fingerId":isFinger[1]}
+        elif isFinger[0] == "false":
+            data = {"fingerSuccess":"false"}
+            
     elif Situation == "register":
+        name = str(data).split(',')[1]
+        studentId = str(data).split(',')[2]
         finger = myFinger()
         isSuc = finger.enrollFinger()
         if isSuc[0] == "true":
-            data = {"fingerSuccess":isSuc[0], "fingerData":isSuc[1], "fingerId":isSuc[2]}
+            data = {"fingerSuccess":isSuc[0], "fingerId":isSuc[1], "name": name, "studentId": studentId}
         elif isSuc[0] == "false":
             data = {"fingerSuccess":"false"}
+            
     print(data)
-    res = requests.post("http://10.120.73.120:3000/"+Situation+"/fingerSuccess", json=data, headers=headers)
+    
+    res = requests.post("http://" + ip + ":" + str(serverPort) + "/" + Situation + "/fingerSuccess", json=data, headers=headers)
+    
     print("end")

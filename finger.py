@@ -5,7 +5,6 @@ tmp=""
 class myFinger:
     def __init__(self):
         try:
-            f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
             if ( f.verifyPassword() == False ):
                 raise ValueError('The given fingerprint sensor password is wrong!')
             print ("complete")
@@ -20,7 +19,7 @@ class myFinger:
             pass
         f.convertImage(0x01)
         result = f.searchTemplate()
-        tmp = str(f.downloadCharacteristics(0x01)).encode('utf-8')
+#         tmp = str(f.downloadCharacteristics(0x01)).encode('utf-8')
         positionNumber = result[0]
         if ( positionNumber >= 0 ):
             print('Template already exists at position #' + str(positionNumber))
@@ -40,7 +39,7 @@ class myFinger:
         positionNumber = f.storeTemplate()
         print('Finger enrolled successfully!')
         print('New template position #' + str(positionNumber))
-        return ["true",tmp, str(positionNumber)]
+        return ["true", str(positionNumber)]
     
     def searchFinger(a):
         print("this")
