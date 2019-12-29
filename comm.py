@@ -47,8 +47,6 @@ while 1:
         elif isSuc[0] == "false":
             data = {"fingerSuccess":"false"}
             
-    print(data)
-    
+    print("Response json : "data)
     res = requests.post("http://" + ip + ":" + str(serverPort) + "/" + Situation + "/fingerSuccess", json=data, headers=headers)
-    
-    print("end")
+    print("Finish")
