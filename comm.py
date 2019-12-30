@@ -26,17 +26,17 @@ while 1:
         finger = myFinger()
         isFinger = finger.searchFinger()
         if isFinger[0] == "true":
-            data = {"fingerSuccess":isFinger[0], "fingerId":isFinger[1], "place": place}
+            data = {"situation":Situation,"fingerSuccess":isFinger[0], "fingerId":isFinger[1], "place": place}
         elif isFinger[0] == "false":
-            data = {"fingerSuccess":"false"}
+            data = {"situation":Situation,"fingerSuccess":"false"}
             
     elif Situation == "outing":
         finger = myFinger()
         isFinger = finger.searchFinger()
         if isFinger[0] == "true":
-            data = {"fingerSuccess":isFinger[0], "fingerId":isFinger[1]}
+            data = {"situation":Situation,"fingerSuccess":isFinger[0], "fingerId":isFinger[1]}
         elif isFinger[0] == "false":
-            data = {"fingerSuccess":"false"}
+            data = {"situation":Situation,"fingerSuccess":"false"}
             
     elif Situation == "register":
         name = str(data).split(',')[1]
@@ -44,9 +44,9 @@ while 1:
         finger = myFinger()
         isSuc = finger.enrollFinger()
         if isSuc[0] == "true":
-            data = {"fingerSuccess":isSuc[0], "fingerId":isSuc[1], "name": name, "studentId": studentId}
+            data = {"situation":Situation,"fingerSuccess":isSuc[0], "fingerId":isSuc[1], "name": name, "studentId": studentId}
         elif isSuc[0] == "false":
-            data = {"fingerSuccess":"false"}
+            data = {"situation":Situation,"fingerSuccess":"false"}
             
     print("Response json(str) : ",data)
     sock.send(str(data))
