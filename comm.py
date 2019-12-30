@@ -47,6 +47,7 @@ while 1:
         elif isSuc[0] == "false":
             data = {"fingerSuccess":"false"}
             
-    print("Response json : "data)
-    res = requests.post("http://" + ip + ":" + str(serverPort) + "/" + Situation + "/fingerSuccess", json=data, headers=headers)
+    print("Response json(str) : "data)
+    sock.send(str(data))
+    # res = requests.post("http://" + ip + ":" + str(serverPort) + "/" + Situation + "/fingerSuccess", json=data, headers=headers)
     print("Finish")
