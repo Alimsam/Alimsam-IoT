@@ -5,7 +5,8 @@ import time
 headers = {}
 data = {}
 resCode = ""
-ip = "192.168.219.107"
+#ip = "192.168.219.107"
+ip = "10.120.73.120"
 socketPort = 3300
 serverPort = 3000
 
@@ -47,7 +48,7 @@ while 1:
         elif isSuc[0] == "false":
             data = {"fingerSuccess":"false"}
             
-    print("Response json(str) : "data)
+    print("Response json(str) : ",data)
     sock.send(str(data))
     # res = requests.post("http://" + ip + ":" + str(serverPort) + "/" + Situation + "/fingerSuccess", json=data, headers=headers)
     print("Finish")

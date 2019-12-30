@@ -1,26 +1,6 @@
 import time
 from pyfingerprint.pyfingerprint import PyFingerprint
-
 f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
-#if f.verifyPassword():
-# print("PASS")
-# while not f.readImage():
-#     print("waiting...")
-# f.convertImage(0x01)
-# result = f.searchTemplate()
-# positionNumber = result[0]
-# 
-# # f.createTemplate()
-# # positionNumber = f.storeTemplate()
-# 
-# if positionNumber == -1 :
-#     print('No match found!')
-# else:
-#     print('Found template at position #' + str(positionNumber))
-#     print(str(positionNumber))
-
-
-
 #f = PyFingerprint('/dev/ttyUSB1', 57600, 0xFFFFFFFF, 0x00000000)
 tmp=""
 class myFinger:
@@ -36,9 +16,8 @@ class myFinger:
     def enrollFinger(a):
         time.sleep(2)
         print('Waiting for finger...')
-        while f.readImage() == False :
-            pass
-        print("processing...")
+        while ( f.readImage() == False ):
+            print("waiting...")
         f.convertImage(0x01)
         result = f.searchTemplate()
 #         tmp = str(f.downloadCharacteristics(0x01)).encode('utf-8')
@@ -64,6 +43,7 @@ class myFinger:
         return ["true", str(positionNumber)]
     
     def searchFinger(a):
+        print("this")
         try:
             print('Waiting for finger...')
             while( f.readImage() == False ):
@@ -79,6 +59,7 @@ class myFinger:
                 return ["false"]
             else:
                 print('Found template at position #' + str(positionNumber))
+                isFinger="true"
                 print(str(positionNumber))
                 return ["true", str(positionNumber)]
         except Exception as e:
