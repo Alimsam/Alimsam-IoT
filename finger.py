@@ -2,26 +2,7 @@ import time
 from pyfingerprint.pyfingerprint import PyFingerprint
 
 f = PyFingerprint('/dev/ttyUSB0', 57600, 0xFFFFFFFF, 0x00000000)
-#if f.verifyPassword():
-# print("PASS")
-# while not f.readImage():
-#     print("waiting...")
-# f.convertImage(0x01)
-# result = f.searchTemplate()
-# positionNumber = result[0]
-# 
-# # f.createTemplate()
-# # positionNumber = f.storeTemplate()
-# 
-# if positionNumber == -1 :
-#     print('No match found!')
-# else:
-#     print('Found template at position #' + str(positionNumber))
-#     print(str(positionNumber))
 
-
-
-#f = PyFingerprint('/dev/ttyUSB1', 57600, 0xFFFFFFFF, 0x00000000)
 tmp=""
 class myFinger:
     def __init__(self):
