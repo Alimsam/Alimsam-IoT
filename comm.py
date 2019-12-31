@@ -17,8 +17,8 @@ print('connected to Server')
 while 1:
     print('waiting for request from socket server')
     data_size = 512
-    data = sock.recv(data_size)
-    Situation = str(data).split(',')[0]
+    recvData = sock.recv(data_size)
+    Situation = str(recvData).split(',')[0]
     
     if Situation == "moving":
         place = str(data).split(',')[1]

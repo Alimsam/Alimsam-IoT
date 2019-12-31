@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel = "stylesheet" type="text/css" href="1.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+
+        function clickTop(a) {
+            var x1 = document.getElementById("btn1"); // id 
+            var x2 = document.getElementById("btn2");
+            var x3 = document.getElementById("btn3");
+            
+            var y1 = document.getElementById("btn01");
+            var y2 = document.getElementById("btn02");
+            var y3 = document.getElementById("btn03");
+            var y4 = document.getElementById("btn04");
+            if (a >= 1 && a <=3){
+                x1.style.background = "powderblue";
+                x2.style.background = "powderblue";
+                x3.style.background = "powderblue";
+            }
+            y1.style.background = "powderblue";
+            y2.style.background = "powderblue";
+            y3.style.background = "powderblue";
+            y4.style.background = "powderblue";
+            
+            if (a == 1) x1.style.background = "blue";
+            else if (a == 2) x2.style.background = "blue";
+            else if (a == 3) x3.style.background = "blue";
+
+            if (a == 10) y1.style.background = "blue";
+            else if (a == 20) y2.style.background = "blue";
+            else if (a == 30) y3.style.background = "blue";
+            else if (a == 40) y4.style.background = "blue";
+        }
+    
+    </script>
+</head>
+<body>
+    <button id="btn1" onclick="clickTop(1)" style="width: 150px; height: 150px;">1</button>
+    <button id="btn2" onclick="clickTop(2)" style="width: 150px; height: 150px;">2</button>
+    <button id="btn3" onclick="clickTop(3)" style="width: 150px; height: 150px;">3</button>
+    <br>
+    <br>
+    <button id="btn01" onclick="clickTop(10)"style="width: 150px; height: 150px;">1</button>
+    <button id="btn02" onclick="clickTop(20)"style="width: 150px; height: 150px;">2</button>
+    <button id="btn03" onclick="clickTop(30)"style="width: 150px; height: 150px;">3</button>
+    <button id="btn04" onclick="clickTop(40)"style="width: 150px; height: 150px;">4</button>
+</body>
+</html>
