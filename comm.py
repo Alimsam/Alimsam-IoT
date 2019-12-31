@@ -22,7 +22,7 @@ while 1:
     Situation = str(recvData).split(',')[0]
     
     if Situation == "moving":
-        place = str(data).split(',')[1]
+        place = str(recvData).split(',')[1]
         finger = myFinger()
         isFinger = finger.searchFinger()
         if isFinger[0] == "true":
@@ -39,8 +39,8 @@ while 1:
             data = "situation:"+Situation + ",fingerSuccess:false"
             
     elif Situation == "register":
-        name = str(data).split(',')[1]
-        studentId = str(data).split(',')[2]
+        name = str(recvData).split(',')[1]
+        studentId = str(recvData).split(',')[2]
         finger = myFinger()
         isSuc = finger.enrollFinger()
         if isSuc[0] == "true":
