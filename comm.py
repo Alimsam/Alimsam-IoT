@@ -45,14 +45,12 @@ while 1:
         isSuc = finger.enrollFinger()
         if isSuc[0] == "true":
             data = "situation:"+Situation + ",fingerSuccess:"+isSuc[0] + ",fingerId:"+isSuc[1] + ",name:"+name + ",studentId:"+studentId
-            #data = {"situation":Situation,"fingerSuccess":isSuc[0], "fingerId":isSuc[1], "name": name, "studentId": studentId}
         elif isSuc[0] == "false":
             data = "situation:"+Situation + ",fingerSuccess:false"
-#             data = {"situation":Situation,"fingerSuccess":"false"}
         elif isSuc[0] == "already":
             data = "situation:"+Situation + ",fingerSuccess:"+isSuc[0]
             
     print(data)
     sock.send(str(data))
-    # res = requests.post("http://" + ip + ":" + str(serverPort) + "/" + Situation + "/fingerSuccess", json=data, headers=headers)
+    sock.close()
     print("Finish")
