@@ -10,12 +10,13 @@ ip = "10.120.73.120"
 socketPort = 3300
 serverPort = 3000
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-print('wating for connecting to server')
-sock.connect((ip, socketPort))
-print('connected to Server')
+
 
 while 1:
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    print('wating for connecting to server')
+    sock.connect((ip, socketPort))
+    print('connected to Server')
     print('waiting for request from socket server')
     data_size = 512
     recvData = sock.recv(data_size)
