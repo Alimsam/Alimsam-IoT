@@ -22,7 +22,7 @@ class myFinger:
         print("processing...")
         f.convertImage(0x01)
         result = f.searchTemplate()
-#         tmp = str(f.downloadCharacteristics(0x01)).encode('utf-8')
+        #tmp = str(f.downloadCharacteristics(0x01)).encode('utf-8')
         positionNumber = result[0]
         if ( positionNumber >= 0 ):
             print('Template already exists at position #' + str(positionNumber))

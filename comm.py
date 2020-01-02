@@ -5,52 +5,52 @@ import time
 headers = {}
 data = {}
 resCode = ""
-#ip = "192.168.219.107"
+#ip = "54.180.88.152"
 ip = "10.120.73.120"
 socketPort = 3300
-serverPort = 3000
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-print('wating for connecting to server')
-sock.connect((ip, socketPort))
-print('connected to Server')
+#sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+#print('wating for connecting to server')
+#sock.connect((ip, socketPort))
+#print('connected to Server')
 
 while 1:
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    print('waiting for connectiong to Server')
+    sock.connect((ip, socketPort))
+    print('connected Server')
     print('waiting for request from socket server')
     data_size = 512
     recvData = sock.recv(data_size)
     Situation = str(recvData).split(',')[0]
-    
+    print(recvData)
     if Situation == "moving":
-        place = str(data).split(',')[1]
         finger = myFinger()
         isFinger = finger.searchFinger()
         if isFinger[0] == "true":
-            data = "situation:"+Situation + ",fingerSuccess:"+isFinger[0] + ",fingerId:"+isFinger[1] + ",place:"+place
+            data = "fingerSuccess:"+isFinger[0] + ",fingerId:"+isFinger[1]
         elif isFinger[0] == "false":
-            data = "situation:"+Situation + ",fingerSuccess:false"
+            data = "fingerSuccess:false"
             
     elif Situation == "outing":
         finger = myFinger()
         isFinger = finger.searchFinger()
         if isFinger[0] == "true":
-            data = "situation:"+Situation + ",fingerSuccess:"+isFinger[0] + ",fingerId:"+isFinger[1]
+            data = "fingerSuccess:"+isFinger[0] + ",fingerId:"+isFinger[1]
         elif isFinger[0] == "false":
-            data = "situation:"+Situation + ",fingerSuccess:false"
+            data = "fingerSuccess:false"
             
     elif Situation == "register":
-        name = str(data).split(',')[1]
-        studentId = str(data).split(',')[2]
         finger = myFinger()
         isSuc = finger.enrollFinger()
         if isSuc[0] == "true":
-            data = "situation:"+Situation + ",fingerSuccess:"+isSuc[0] + ",fingerId:"+isSuc[1] + ",name:"+name + ",studentId:"+studentId
+            data = "fingerSuccess:"+isSuc[0] + ",fingerId:"+isSuc[1]
         elif isSuc[0] == "false":
-            data = "situation:"+Situation + ",fingerSuccess:false"
+            data = "fingerSuccess:false"
         elif isSuc[0] == "already":
-            data = "situation:"+Situation + ",fingerSuccess:"+isSuc[0]
+            data = "fingerSuccess:"+isSuc[0]
             
     print(data)
     sock.send(str(data))
-    sock.close()
     print("Finish")
+    sock.close()
